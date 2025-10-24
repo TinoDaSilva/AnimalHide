@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Animal Hide Agent - Supplier Management">
+    <meta name="keywords" content="animals, conservation, wildlife, suppliers, management">
+    <meta name="author" content="Animal Hide Agent">
+    <title>Supplier Management - Animal Hide Agent</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏢 Supplier Management</h1>
+            <p>Manage your South African hide supplier database</p>
+        </header>
+        
+        <nav class="main-nav">
+            <a href="index.html" class="nav-link">Search & Source</a>
+            <a href="historical.html" class="nav-link">Historical Data</a>
+            <a href="supplier-management.html" class="nav-link active">Supplier Management</a>
+        </nav>
+
+        <div class="management-section">
+            <div class="management-controls">
+                <button id="addSupplierBtn" class="btn-primary">Add New Supplier</button>
+                <button id="importDataBtn" class="btn-secondary">Import Data</button>
+                <button id="exportSuppliersBtn" class="btn-secondary">Export Suppliers</button>
+            </div>
+
+            <div id="addSupplierForm" class="supplier-form hidden">
+                <h2>Add New Supplier</h2>
+                <form id="supplierForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="companyName">Company Name *</label>
+                            <input type="text" id="companyName" name="companyName" required placeholder="Enter company name">
+                        </div>
+                        <div class="form-group">
+                            <label for="website">Website</label>
+                            <input type="url" id="website" name="website" placeholder="https://example.co.za">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required placeholder="info@company.co.za">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="+27 82 123 4567">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Physical Address *</label>
+                        <textarea id="address" name="address" required placeholder="Enter full physical address" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="specialties">Animal Specialties *</label>
+                            <select id="specialties" name="specialties" multiple required>
+                                <option value="springbok">Springbok</option>
+                                <option value="zebra">Zebra</option>
+                                <option value="oryx">Oryx / Gemsbok</option>
+                                <option value="wildebeest">Wildebeest</option>
+                                <option value="blesbok">Blesbok</option>
+                                <option value="impala">Impala</option>
+                                <option value="kudu">Kudu</option>
+                                <option value="giraffe">Giraffe</option>
+                                <option value="cow">Cow</option>
+                                <option value="sheep">Sheep</option>
+                                <option value="hartebeest">African Hartebeest</option>
+                                <option value="nyala">Nyala</option>
+                                <option value="bushbuck">Bushbuck</option>
+                                <option value="fallow-deer">Fallow Deer</option>
+                                <option value="waterbuck">Waterbuck</option>
+                                <option value="eland">Eland</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="grade">Primary Grade</label>
+                            <select id="grade" name="grade">
+                                <option value="">Select Grade</option>
+                                <option value="Tri Grade">Tri Grade</option>
+                                <option value="AAS Grade">AAS Grade</option>
+                                <option value="AA Grade">AA Grade</option>
+                                <option value="A Grade">A Grade</option>
+                                <option value="AS Grade">AS Grade</option>
+                                <option value="B Grade">B Grade</option>
+                                <option value="BS Grade">BS Grade</option>
+                                <option value="SMALL Grade">SMALL Grade</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">Notes</label>
+                        <textarea id="notes" name="notes" placeholder="Additional notes about this supplier" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">Save Supplier</button>
+                        <button type="button" id="cancelSupplier" class="btn-secondary">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="suppliers-list">
+                <h2>Current Suppliers</h2>
+                <div class="search-controls">
+                    <input type="text" id="supplierSearch" placeholder="Search suppliers..." class="search-input">
+                    <select id="specialtyFilter" class="animal-dropdown">
+                        <option value="">Filter by Animal</option>
+                        <option value="springbok">Springbok</option>
+                        <option value="zebra">Zebra</option>
+                        <option value="oryx">Oryx / Gemsbok</option>
+                        <option value="wildebeest">Wildebeest</option>
+                        <option value="blesbok">Blesbok</option>
+                        <option value="impala">Impala</option>
+                        <option value="kudu">Kudu</option>
+                        <option value="giraffe">Giraffe</option>
+                        <option value="cow">Cow</option>
+                        <option value="sheep">Sheep</option>
+                        <option value="hartebeest">African Hartebeest</option>
+                        <option value="nyala">Nyala</option>
+                        <option value="bushbuck">Bushbuck</option>
+                        <option value="fallow-deer">Fallow Deer</option>
+                        <option value="waterbuck">Waterbuck</option>
+                        <option value="eland">Eland</option>
+                    </select>
+                </div>
+
+                <div class="table-container">
+                    <table id="suppliersTable" class="suppliers-table">
+                        <thead>
+                            <tr>
+                                <th>Company</th>
+                                <th>Contact</th>
+                                <th>Specialties</th>
+                                <th>Grade</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="suppliersTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./auth.js"></script>
+    <script src="./supplier-management.js"></script>
+</body>
+</html>

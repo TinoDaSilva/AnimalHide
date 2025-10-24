@@ -55,99 +55,42 @@ class SAHideSourcingAgent {
     }
 
     async collectSupplierData(animal) {
-        // Simulate AI agent collecting data from South African hide suppliers
-        const suppliers = [];
+        // Load real supplier data from local storage
+        const allSuppliers = this.loadRealSuppliers();
         
-        // Simulate different South African suppliers based on the selected animal
-        const supplierTemplates = this.getSupplierTemplates(animal);
-        
-        for (const template of supplierTemplates) {
-            const supplier = {
-                ...template,
-                credibilityScore: this.calculateCredibilityScore(template),
-                lastUpdated: new Date().toISOString(),
-                prices: this.generatePrices(animal, template.grade)
-            };
-            suppliers.push(supplier);
-        }
-
-        // Simulate network delay for data collection
-        await new Promise(resolve => setTimeout(resolve, 3000));
-        
-        return suppliers;
-    }
-
-    getSupplierTemplates(animal) {
-        const suppliers = [
-            {
-                companyName: "The Nguni Guy",
-                website: "https://thenguniguy.co.za",
-                email: "info@thenguniguy.co.za",
-                phone: "+27 82 123 4567",
-                address: "Johannesburg, Gauteng, South Africa",
-                grade: "AA Grade",
-                specialties: ["Springbok", "Zebra", "Oryx"],
-                establishedYear: 2015
-            },
-            {
-                companyName: "Raven Hides",
-                website: "https://ravenhides.co.za",
-                email: "sales@ravenhides.co.za",
-                phone: "+27 83 987 6543",
-                address: "Cape Town, Western Cape, South Africa",
-                grade: "A Grade",
-                specialties: ["Kudu", "Impala", "Blesbok"],
-                establishedYear: 2012
-            },
-            {
-                companyName: "Soweto Game Skin",
-                website: "https://sowetogameskin.co.za",
-                email: "contact@sowetogameskin.co.za",
-                phone: "+27 11 555 1234",
-                address: "Soweto, Gauteng, South Africa",
-                grade: "AAS Grade",
-                specialties: ["Wildebeest", "Eland", "Waterbuck"],
-                establishedYear: 2018
-            },
-            {
-                companyName: "HideSkin Solutions",
-                website: "https://hideskin.co.za",
-                email: "orders@hideskin.co.za",
-                phone: "+27 82 456 7890",
-                address: "Durban, KwaZulu-Natal, South Africa",
-                grade: "B Grade",
-                specialties: ["Cow", "Sheep", "Fallow Deer"],
-                establishedYear: 2020
-            },
-            {
-                companyName: "African Gameskin Group",
-                website: "https://africangameskin.co.za",
-                email: "info@africangameskin.co.za",
-                phone: "+27 83 321 0987",
-                address: "Pretoria, Gauteng, South Africa",
-                grade: "Tri Grade",
-                specialties: ["Giraffe", "Hartebeest", "Nyala"],
-                establishedYear: 2010
-            },
-            {
-                companyName: "Italtan Leather",
-                website: "https://italtan.co.za",
-                email: "sales@italtan.co.za",
-                phone: "+27 11 777 8888",
-                address: "Bloemfontein, Free State, South Africa",
-                grade: "AS Grade",
-                specialties: ["Bushbuck", "Small Game"],
-                establishedYear: 2008
-            }
-        ];
-
         // Filter suppliers that specialize in the selected animal
-        return suppliers.filter(supplier => 
-            supplier.specialties.some(specialty => 
+        const matchingSuppliers = allSuppliers.filter(supplier => 
+            supplier.specialties && supplier.specialties.some(specialty => 
                 specialty.toLowerCase().includes(animal.toLowerCase()) ||
                 animal.toLowerCase().includes(specialty.toLowerCase())
             )
         );
+
+        // Add pricing information to each supplier
+        const suppliersWithPricing = matchingSuppliers.map(supplier => ({
+            ...supplier,
+            credibilityScore: this.calculateCredibilityScore(supplier),
+            lastUpdated: new Date().toISOString(),
+            prices: this.generatePrices(animal, supplier.grade)
+        }));
+
+        // Simulate network delay for data collection
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        return suppliersWithPricing;
+    }
+
+    loadRealSuppliers() {
+        const stored = localStorage.getItem('sahideSuppliers');
+        if (stored) {
+            try {
+                return JSON.parse(stored);
+            } catch (error) {
+                console.error('Error loading suppliers:', error);
+                return [];
+            }
+        }
+        return [];
     }
 
     generatePrices(animal, grade) {
