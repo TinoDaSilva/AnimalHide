@@ -40,8 +40,6 @@ The application works best with modern browsers:
 
 The application displays information about various animal hides with the price of the hide and the business that offers the hide.
 
-Each animal entry includes habitat, population, conservation status, description, and main threats.
-
 ## Live Demo
 
 🌐 **Live Website**: [https://tinodasilva.github.io/AnimalHide/](https://tinodasilva.github.io/AnimalHide/)
