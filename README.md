@@ -38,14 +38,7 @@ The application works best with modern browsers:
 
 ## Animal Data
 
-The application displays information about various endangered animals including:
-- African Elephant
-- Bengal Tiger
-- Giant Panda
-- Blue Whale
-- Snow Leopard
-
-Each animal entry includes habitat, population, conservation status, description, and main threats.
+The application displays information about various animal hides with the price of the hide and the business that offers the hide.
 
 ## Live Demo
 
