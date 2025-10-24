@@ -13,13 +13,40 @@
 <body>
     <div class="container">
         <header>
-            <h1>🐾 Animal Hide Agent</h1>
-            <p>Discover hidden animal data and insights</p>
+            <h1>🦌 South African Hide Sourcing Agent</h1>
+            <p>AI-powered sourcing for South African animal hide suppliers</p>
         </header>
+        
+        <nav class="main-nav">
+            <a href="index.html" class="nav-link active">Search & Source</a>
+            <a href="historical.html" class="nav-link">Historical Data</a>
+        </nav>
 
-        <div class="controls">
-            <button id="fetchData" class="btn-primary">Fetch Animal Data</button>
-            <button id="clearData" class="btn-secondary">Clear Data</button>
+        <div class="search-section">
+            <div class="search-controls">
+                <label for="animalSelect">Select Animal Hide to Source:</label>
+                <select id="animalSelect" class="animal-dropdown">
+                    <option value="">Choose an animal...</option>
+                    <option value="springbok">Springbok</option>
+                    <option value="zebra">Zebra (all species)</option>
+                    <option value="oryx">Oryx / Gemsbok</option>
+                    <option value="wildebeest">Wildebeest</option>
+                    <option value="blesbok">Blesbok</option>
+                    <option value="impala">Impala</option>
+                    <option value="kudu">Kudu</option>
+                    <option value="giraffe">Giraffe</option>
+                    <option value="cow">Cow</option>
+                    <option value="sheep">Sheep</option>
+                    <option value="hartebeest">African Hartebeest</option>
+                    <option value="nyala">Nyala (male or female)</option>
+                    <option value="bushbuck">Bushbuck</option>
+                    <option value="fallow-deer">Fallow Deer</option>
+                    <option value="waterbuck">Waterbuck</option>
+                    <option value="eland">Eland</option>
+                </select>
+                <button id="searchHides" class="btn-primary">Search Suppliers</button>
+                <button id="clearResults" class="btn-secondary">Clear Results</button>
+            </div>
         </div>
 
         <div class="data-display">
@@ -29,8 +56,27 @@
             </div>
 
             <div id="dataContainer" class="data-container hidden">
-                <h2>Animal Information</h2>
-                <div id="animalData"></div>
+                <h2>South African Hide Suppliers</h2>
+                <div class="results-summary">
+                    <span id="resultsCount">0</span> suppliers found for <span id="selectedAnimal"></span>
+                </div>
+                <div class="table-container">
+                    <table id="suppliersTable" class="suppliers-table">
+                        <thead>
+                            <tr>
+                                <th>Company Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>Hide Prices</th>
+                                <th>Grade</th>
+                                <th>Credibility Score</th>
+                            </tr>
+                        </thead>
+                        <tbody id="suppliersTableBody">
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <div id="error" class="error hidden">
