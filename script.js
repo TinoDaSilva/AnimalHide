@@ -33,7 +33,7 @@ class SAHideSourcingAgent {
     async searchSuppliers() {
         const selectedAnimal = document.getElementById('animalSelect').value;
         if (!selectedAnimal) {
-            alert('Please select an animal hide to search for.');
+            alert('Please select an animal hide to search for or choose "Search All Suppliers".');
             return;
         }
 
@@ -42,7 +42,7 @@ class SAHideSourcingAgent {
         this.hideDataContainer();
 
         try {
-            // Simulate AI-powered data collection from South African suppliers
+            // Collect supplier data based on selection
             const suppliers = await this.collectSupplierData(selectedAnimal);
             this.suppliersData = suppliers;
             this.displaySuppliers(suppliers, selectedAnimal);
@@ -58,20 +58,27 @@ class SAHideSourcingAgent {
         // Load real supplier data from local storage
         const allSuppliers = this.loadRealSuppliers();
         
-        // Filter suppliers that specialize in the selected animal
-        const matchingSuppliers = allSuppliers.filter(supplier => 
-            supplier.specialties && supplier.specialties.some(specialty => 
-                specialty.toLowerCase().includes(animal.toLowerCase()) ||
-                animal.toLowerCase().includes(specialty.toLowerCase())
-            )
-        );
+        let matchingSuppliers;
+        
+        if (animal === 'all') {
+            // Return all suppliers if "Search All Suppliers" is selected
+            matchingSuppliers = allSuppliers;
+        } else {
+            // Filter suppliers that specialize in the selected animal
+            matchingSuppliers = allSuppliers.filter(supplier => 
+                supplier.specialties && supplier.specialties.some(specialty => 
+                    specialty.toLowerCase().includes(animal.toLowerCase()) ||
+                    animal.toLowerCase().includes(specialty.toLowerCase())
+                )
+            );
+        }
 
         // Add pricing information to each supplier
         const suppliersWithPricing = matchingSuppliers.map(supplier => ({
             ...supplier,
             credibilityScore: this.calculateCredibilityScore(supplier),
             lastUpdated: new Date().toISOString(),
-            prices: this.generatePrices(animal, supplier.grade)
+            prices: this.generatePrices(animal === 'all' ? 'general' : animal, supplier.grade)
         }));
 
         // Simulate network delay for data collection
@@ -110,7 +117,8 @@ class SAHideSourcingAgent {
             'bushbuck': { min: 350, max: 650 },
             'fallow-deer': { min: 400, max: 750 },
             'waterbuck': { min: 800, max: 1400 },
-            'eland': { min: 1000, max: 2000 }
+            'eland': { min: 1000, max: 2000 },
+            'general': { min: 300, max: 1000 } // General pricing for "all" search
         };
 
         const priceRange = basePrices[animal] || { min: 300, max: 800 };
@@ -174,7 +182,7 @@ class SAHideSourcingAgent {
 
         // Update results summary
         document.getElementById('resultsCount').textContent = suppliers.length;
-        document.getElementById('selectedAnimal').textContent = animal.charAt(0).toUpperCase() + animal.slice(1);
+        document.getElementById('selectedAnimal').textContent = animal === 'all' ? 'All Animals' : animal.charAt(0).toUpperCase() + animal.slice(1);
 
         this.showDataContainer();
     }
