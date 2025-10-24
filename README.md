@@ -15,7 +15,7 @@ A beautiful web application that displays animal conservation data and informati
 
 ## How to Use
 
-1. **Desktop Shortcut**: Double-click the "Animal Hide Agent" shortcut on your desktop to open the application in your browser
+1. **Live Website**: Visit the live site at [GitHub Pages](https://tinodasilva.github.io/AnimalHide/)
 2. **Manual Opening**: Navigate to the project folder and double-click `index.html`
 3. **Fetch Data**: Click the "Fetch Animal Data" button to load animal information
 4. **Clear Data**: Click "Clear Data" to reset the application
@@ -46,5 +46,9 @@ The application displays information about various endangered animals including:
 - Snow Leopard
 
 Each animal entry includes habitat, population, conservation status, description, and main threats.
+
+## Live Demo
+
+🌐 **Live Website**: [https://tinodasilva.github.io/AnimalHide/](https://tinodasilva.github.io/AnimalHide/)
 
 Enjoy exploring the Animal Hide Agent! 🌍🐾
