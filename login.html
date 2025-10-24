@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Animal Hide Agent - Secure Login">
+    <meta name="keywords" content="animals, conservation, wildlife, login, security">
+    <meta name="author" content="Animal Hide Agent">
+    <title>Login - Animal Hide Agent</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <header class="auth-header">
+                <h1>🦌 South African Hide Sourcing Agent</h1>
+                <p>Secure Login Required</p>
+            </header>
+
+            <div id="loginForm" class="auth-form">
+                <h2>Login to Your Account</h2>
+                <form id="loginFormElement">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" id="loginEmail" name="email" required placeholder="Enter your email address">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" name="password" required placeholder="Enter your password">
+                    </div>
+                    
+                    <button type="submit" class="btn-primary btn-full">Login</button>
+                </form>
+                
+                <div class="auth-footer">
+                    <p>Don't have an account? <a href="signup.html" id="signupLink">Sign up here</a></p>
+                </div>
+            </div>
+
+            <div id="errorMessage" class="error-message hidden">
+                <p id="errorText"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="./auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Animal Hide Agent - Create Account">
+    <meta name="keywords" content="animals, conservation, wildlife, signup, account">
+    <meta name="author" content="Animal Hide Agent">
+    <title>Sign Up - Animal Hide Agent</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <header class="auth-header">
+                <h1>🦌 South African Hide Sourcing Agent</h1>
+                <p>Create Your Account</p>
+            </header>
+
+            <div id="signupForm" class="auth-form">
+                <h2>Create New Account</h2>
+                <form id="signupFormElement">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="signupName">First Name</label>
+                            <input type="text" id="signupName" name="name" required placeholder="Enter your first name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="signupSurname">Surname</label>
+                            <input type="text" id="signupSurname" name="surname" required placeholder="Enter your surname">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signupEmail">Email Address</label>
+                        <input type="email" id="signupEmail" name="email" required placeholder="Enter your email address">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" name="password" required placeholder="Create a secure password">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signupConfirmPassword">Confirm Password</label>
+                        <input type="password" id="signupConfirmPassword" name="confirmPassword" required placeholder="Confirm your password">
+                    </div>
+                    
+                    <button type="submit" class="btn-primary btn-full">Create Account</button>
+                </form>
+                
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="login.html">Login here</a></p>
+                </div>
+            </div>
+
+            <div id="successMessage" class="success-message hidden">
+                <p>Account created successfully! Redirecting to login...</p>
+            </div>
+
+            <div id="errorMessage" class="error-message hidden">
+                <p id="errorText"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="./auth.js"></script>
+</body>
+</html>
